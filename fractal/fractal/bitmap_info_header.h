@@ -1,7 +1,6 @@
 #ifndef _BITMAP_INFO_HEADER_H_
 #define _BITMAP_INFO_HEADER_H_
-
-#include<cstdint>
+#include <cstdint>
 using namespace std;
 
 struct BitmapInfoHeader{

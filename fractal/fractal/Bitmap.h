@@ -12,10 +12,8 @@ private:
 	unique_ptr<uint8_t []> pixels{nullptr};
 public:
 	Bitmap(int width, int height);
+	~Bitmap() = default;
 	bool write(string file_name);
 	void set_pixel(int x, int y, uint8_t r, uint8_t g, uint8_t b);
-	~Bitmap();
-
 };
-
 #endif // BITMAP_H
