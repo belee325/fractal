@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=belee
-Date                   :=30/10/2018
+Date                   :=05/11/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bitmap.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bitmap.cpp$(ObjectSuffix) $(IntermediateDirectory)/ZoomList.cpp$(ObjectSuffix) $(IntermediateDirectory)/Mandelbrot.cpp$(ObjectSuffix) 
 
 
 
@@ -108,6 +108,22 @@ $(IntermediateDirectory)/Bitmap.cpp$(DependSuffix): Bitmap.cpp
 
 $(IntermediateDirectory)/Bitmap.cpp$(PreprocessSuffix): Bitmap.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Bitmap.cpp$(PreprocessSuffix) Bitmap.cpp
+
+$(IntermediateDirectory)/ZoomList.cpp$(ObjectSuffix): ZoomList.cpp $(IntermediateDirectory)/ZoomList.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/belee/Desktop/study/fractal/fractal/fractal/ZoomList.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ZoomList.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/ZoomList.cpp$(DependSuffix): ZoomList.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/ZoomList.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/ZoomList.cpp$(DependSuffix) -MM ZoomList.cpp
+
+$(IntermediateDirectory)/ZoomList.cpp$(PreprocessSuffix): ZoomList.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ZoomList.cpp$(PreprocessSuffix) ZoomList.cpp
+
+$(IntermediateDirectory)/Mandelbrot.cpp$(ObjectSuffix): Mandelbrot.cpp $(IntermediateDirectory)/Mandelbrot.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/belee/Desktop/study/fractal/fractal/fractal/Mandelbrot.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Mandelbrot.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Mandelbrot.cpp$(DependSuffix): Mandelbrot.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Mandelbrot.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Mandelbrot.cpp$(DependSuffix) -MM Mandelbrot.cpp
+
+$(IntermediateDirectory)/Mandelbrot.cpp$(PreprocessSuffix): Mandelbrot.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Mandelbrot.cpp$(PreprocessSuffix) Mandelbrot.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

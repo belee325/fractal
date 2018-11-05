@@ -1,1 +1,1 @@
-./Debug/main.cpp.o ./Debug/Bitmap.cpp.o   
+./Debug/main.cpp.o ./Debug/Bitmap.cpp.o ./Debug/ZoomList.cpp.o ./Debug/Mandelbrot.cpp.o   

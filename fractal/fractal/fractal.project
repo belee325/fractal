@@ -8,6 +8,11 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="ZoomList.cpp"/>
+    <File Name="ZoomList.h"/>
+    <File Name="Zoom.h"/>
+    <File Name="Mandelbrot.cpp"/>
+    <File Name="Mandelbrot.h"/>
     <File Name="Bitmap.cpp"/>
     <File Name="Bitmap.h"/>
     <File Name="bitmap_info_header.h"/>
