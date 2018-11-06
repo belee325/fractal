@@ -5,13 +5,37 @@ FractalCreator::FractalCreator(int width, int height) : width{width}, height{hei
 FractalCreator::~FractalCreator(){}
 
 void FractalCreator::run(string file_name){
-	add_zoom(Zoom(width/2, height/2, 4.0/width));
-	add_zoom(Zoom(295, height - 202, 0.1));
-	add_zoom(Zoom(302, height-304, 0.1));
-	add_zoom(Zoom(250, height-350, 0.1));
 	calculate_iteration();
+	calculate_range_total();
 	draw_fractal();
 	write_bitmap(file_name);
+}
+
+void FractalCreator::add_color_range(double range_end, const RGB& rgb){
+	color_range.push_back(range_end*Mandelbrot::MAX_ITERATION);
+	colors.push_back(rgb);
+	if(first_range){
+		range_totals.push_back(0);
+	}
+	first_range = true;
+}
+
+void FractalCreator::add_zoom(const Zoom& zoom){
+	zl.add(zoom);
+}
+
+void FractalCreator::calculate_range_total(){
+	int range_idx = 0;
+	for(int i =0; i < Mandelbrot::MAX_ITERATION; i++){
+		int pixels = hist[i];
+		if(i >= color_range[range_idx]){
+			range_idx++;
+		}
+		range_totals[range_idx] += pixels;
+	}
+	for(auto v: range_totals){
+		cout << v << endl;
+	}
 }
 
 void FractalCreator::calculate_iteration(){
@@ -26,28 +50,50 @@ void FractalCreator::calculate_iteration(){
 		}
 	}
 }
+
+int FractalCreator::get_range(int iter) const {
+	int range{0};
+	for(int i = 1; i < color_range.size(); i++){
+		range =i;
+		if(color_range[i] > iter){
+			break;
+		}
+	}
+	range--;
+	return range;
+}
+
 void FractalCreator::draw_fractal(){
 	int total{0};
 	for(int i =0; i < Mandelbrot::MAX_ITERATION; i++){
 		total += hist[i];
 	}
-	
 	for(int y =0; y < height; y++){
 		for(int x = 0; x < width; x++){
+			int iter = fractal[y*width + x];
+			int range{get_range(iter)};
+			int range_start{color_range[range]};
+			int range_total{range_totals[range]};
+			RGB& start{colors[range]};
+			RGB& end{colors[range+1]};
+			RGB& diff = end - start;
 			uint8_t red{0};
 			uint8_t green{0};
 			uint8_t blue{0};
 			
 			
-			int iter = fractal[y*width + x];
+			
 			if(iter != Mandelbrot::MAX_ITERATION){
 				double hue{0.0};
-				for(int i =0; i < iter; i++){
-					hue+=(double)hist[i]/total;
+				int total_pixels{0};
+				for(int i =range_start; i <= iter; i++){
+					total_pixels += hist[i];
 				}
-				green =pow(255,hue);
-			}
-			
+				double scale{((double)total_pixels/total)};
+				red = start.r + diff.r*scale;
+				green = start.g + diff.g*scale;
+				blue = start.b + diff.b*scale;
+			} 
 			bitmap.set_pixel(x,y,red,green,blue);
 			
 		}
@@ -55,7 +101,4 @@ void FractalCreator::draw_fractal(){
 }
 void FractalCreator::write_bitmap(string name){
 	bitmap.write(name);
-}
-void FractalCreator::add_zoom(const Zoom& zoom){
-	zl.add(zoom);
 }

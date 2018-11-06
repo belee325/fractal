@@ -5,7 +5,7 @@ ZoomList::ZoomList(int width, int height): width{width}, height{height} {}
 void ZoomList::add(const Zoom& zoom){
 	zooms.push_back(zoom);
 	x_center += (zoom.x - width/2) * scale;
-	y_center += (zoom.y - height/2) * scale;
+	y_center += -(zoom.y - height/2) * scale;
 	scale *= zoom.scale;
 }
 
