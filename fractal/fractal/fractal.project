@@ -8,6 +8,10 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="RGB.cpp"/>
+    <File Name="RGB.h"/>
+    <File Name="FractalCreator.cpp"/>
+    <File Name="FractalCreator.h"/>
     <File Name="ZoomList.cpp"/>
     <File Name="ZoomList.h"/>
     <File Name="Zoom.h"/>

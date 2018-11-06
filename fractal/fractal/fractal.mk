@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=belee
-Date                   :=05/11/2018
+Date                   :=06/11/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bitmap.cpp$(ObjectSuffix) $(IntermediateDirectory)/ZoomList.cpp$(ObjectSuffix) $(IntermediateDirectory)/Mandelbrot.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/RGB.cpp$(ObjectSuffix) $(IntermediateDirectory)/FractalCreator.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bitmap.cpp$(ObjectSuffix) $(IntermediateDirectory)/ZoomList.cpp$(ObjectSuffix) $(IntermediateDirectory)/Mandelbrot.cpp$(ObjectSuffix) 
 
 
 
@@ -93,6 +93,22 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/RGB.cpp$(ObjectSuffix): RGB.cpp $(IntermediateDirectory)/RGB.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/belee/Desktop/study/fractal/fractal/fractal/RGB.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/RGB.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/RGB.cpp$(DependSuffix): RGB.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/RGB.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/RGB.cpp$(DependSuffix) -MM RGB.cpp
+
+$(IntermediateDirectory)/RGB.cpp$(PreprocessSuffix): RGB.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/RGB.cpp$(PreprocessSuffix) RGB.cpp
+
+$(IntermediateDirectory)/FractalCreator.cpp$(ObjectSuffix): FractalCreator.cpp $(IntermediateDirectory)/FractalCreator.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/belee/Desktop/study/fractal/fractal/fractal/FractalCreator.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FractalCreator.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/FractalCreator.cpp$(DependSuffix): FractalCreator.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/FractalCreator.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/FractalCreator.cpp$(DependSuffix) -MM FractalCreator.cpp
+
+$(IntermediateDirectory)/FractalCreator.cpp$(PreprocessSuffix): FractalCreator.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FractalCreator.cpp$(PreprocessSuffix) FractalCreator.cpp
+
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/belee/Desktop/study/fractal/fractal/fractal/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
